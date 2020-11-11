@@ -8,3 +8,8 @@ export default {
   components: {},
 };
 </script>
+<style lang="scss">
+body {
+  background: $color_bg;
+}
+</style>
