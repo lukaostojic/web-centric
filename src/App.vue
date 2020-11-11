@@ -1,14 +1,19 @@
 <template>
   <div id="app">
-    <home />
+    <navigation />
+    <main>
+      <keep-alive>
+        <router-view />
+      </keep-alive>
+    </main>
   </div>
 </template>
 <script>
-import Home from "./views/Home";
+import Navigation from "./components/Navigation";
 
 export default {
   components: {
-    Home,
+    Navigation,
   },
 };
 </script>

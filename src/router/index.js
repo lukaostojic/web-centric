@@ -1,14 +1,28 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
+import Home from "../views/Home";
+import Favorites from "../views/Favorites";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/",
-    name: "Home",
+    path: "/home",
+    name: "home",
     component: Home,
+  },
+  {
+    path: "/favorites",
+    name: "favorites",
+    component: Favorites,
+  },
+  {
+    path: "/",
+    redirect: "/home",
+  },
+  {
+    path: "*",
+    redirect: "/",
   },
 ];
 

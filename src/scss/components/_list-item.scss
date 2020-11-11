@@ -1,0 +1,29 @@
+.list-item {
+  margin: $gap_lg;
+  background: $color_bg-grey;
+  box-shadow: 0px 2px 5px 0px rgba(34, 34, 34, 0.15);
+
+  &__heading {
+    padding: $gap_md;
+
+    &-favorite {
+      color: $color_text-dark;
+
+      &.added {
+        color: $color_bg-yellow;
+      }
+    }
+
+    &-info {
+      margin-top: $gap_md;
+
+      span {
+        font-size: 14px;
+
+        &:nth-child(2) {
+          text-transform: capitalize;
+        }
+      }
+    }
+  }
+}
