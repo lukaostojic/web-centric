@@ -17,12 +17,26 @@
     <section v-show="isLoading">
       <loader></loader>
     </section>
-    <section>
-      <div class="pagination">
-        <button :disabled="page == 1" @click="page--">Prev</button>
-        <button :disabled="disableNextButton" @click="page++">Next</button>
+    <footer
+      class="home-footer display-flex--row justify-center align-center position-fixed full-width"
+    >
+      <div class="">
+        <button
+          class="home-footer__pagination"
+          :disabled="page == 1"
+          @click="page--"
+        >
+          Prev
+        </button>
+        <button
+          class="home-footer__pagination"
+          :disabled="disableNextButton"
+          @click="page++"
+        >
+          Next
+        </button>
       </div>
-    </section>
+    </footer>
   </div>
 </template>
 

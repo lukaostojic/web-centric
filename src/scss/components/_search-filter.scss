@@ -2,4 +2,43 @@
   padding: $gap_lg;
   background: $color_bg-grey;
   box-shadow: 0px 8px 5px 0px rgba(34, 34, 34, 0.15);
+
+  &__section {
+    margin-bottom: $gap_sm;
+    font-size: 14px;
+
+    label,
+    span,
+    input {
+      margin-right: $gap_sm;
+    }
+
+    input,
+    select {
+      border: 1px solid #d8d8d8;
+      border-radius: 4px;
+    }
+
+    input[type="radio"] {
+      position: relative;
+      top: 1px;
+    }
+
+    input[type="text"] {
+      // padding: $gap_xs;
+      padding: $gap_sm $gap_md;
+    }
+
+    select {
+      padding: $gap_xs;
+    }
+
+    button {
+      margin-left: $gap_sm;
+      padding: $gap_sm $gap_md;
+      background: $color_bg-cyan;
+      color: $color_text-light;
+      border-radius: 5px;
+    }
+  }
 }

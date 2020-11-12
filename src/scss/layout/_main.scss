@@ -1,1 +1,18 @@
+.home-footer {
+  top: calc(100vh - 135px + 80px);
+  padding: $gap_sm;
+  background: $color_bg-cyan;
 
+  &__pagination {
+    padding: $gap_xs $gap_md;
+    margin: $gap_sm;
+    background: $color_text-light;
+    color: $color_text-dark;
+    border-radius: 4px;
+  }
+}
+
+.movie-list {
+  height: calc(100vh - 250px);
+  overflow-y: scroll;
+}

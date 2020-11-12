@@ -1,23 +1,29 @@
 <template>
   <div>
-    <p>favorites</p>
-    <list-item
-      v-for="(movie, index) in favoritesList"
-      :key="index"
-      :movieInfo="movie"
-      :isFavoritesView="true"
-    ></list-item>
+    <div v-show="!isLoading">
+      <list-item
+        v-for="(movie, index) in favoritesList"
+        :key="index"
+        :movieInfo="movie"
+        :isFavoritesView="true"
+      ></list-item>
+    </div>
+    <div v-show="isLoading">
+      <loader></loader>
+    </div>
   </div>
 </template>
 
 <script>
 import ListItem from "../components/ListItem";
+import Loader from "../components/Loader";
 import MovieService from "../api/movieService";
 import { EventBus } from "../global-events/event-bus";
 
 export default {
   components: {
     ListItem,
+    Loader,
   },
 
   data() {
@@ -25,15 +31,22 @@ export default {
       favorites: [],
       movieId: "",
       favoritesList: [],
+      isLoading: false,
     };
   },
 
   methods: {
     async getMovies() {
-      for await (let i of this.favorites) {
-        MovieService.movieId = i;
+      this.isLoading = true;
+      let iterations = this.favorites.length;
+      for await (let item of this.favorites) {
+        MovieService.movieId = item;
         MovieService.getMovieDetails().then((resp) => {
           this.favoritesList.push(resp);
+          iterations--;
+          if (iterations == 0) {
+            this.isLoading = false;
+          }
         });
       }
     },
@@ -42,7 +55,6 @@ export default {
   watch: {
     $route() {
       this.favoritesList = [];
-      this.favorites = [];
     },
   },
 
@@ -51,10 +63,6 @@ export default {
       this.favorites = payload;
       this.getMovies();
     });
-  },
-
-  beforeDestroy() {
-    this.favoritesList = [];
   },
 };
 </script>

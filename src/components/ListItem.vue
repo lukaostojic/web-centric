@@ -26,9 +26,30 @@
     <div v-if="isLoading && !showDetails">
       <loader></loader>
     </div>
-    <div v-if="!isLoading && showDetails" class="list-item__details">
+    <div
+      v-if="!isLoading && showDetails"
+      class="list-item__details display-flex--column"
+    >
+      <div class="display-flex--row justify-between align-center">
+        <span>{{ movieDetails.Genre }}</span>
+        <span>{{ movieDetails.imdbRating }}</span>
+      </div>
+
       <p>{{ movieDetails.Plot }}</p>
       <img class="" :src="movieInfo.Poster" alt="" />
+      <!-- <div class="display-flex--column"> -->
+      <p>
+        <strong> Director:</strong> &nbsp;<span>{{
+          movieDetails.Director
+        }}</span>
+      </p>
+      <p>
+        <strong> Actors:</strong> &nbsp;<span>{{ movieDetails.Actors }}</span>
+      </p>
+      <p>
+        <strong> Runtime:</strong> &nbsp;<span>{{ movieDetails.Runtime }}</span>
+      </p>
+      <!-- </div> -->
     </div>
   </div>
 </template>
@@ -62,6 +83,7 @@ export default {
         this.showDetails = !this.showDetails;
         this.movieDetails = resp;
         this.isLoading = false;
+        console.log(resp);
       });
     },
 
