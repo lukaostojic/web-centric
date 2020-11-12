@@ -10,6 +10,8 @@
         v-for="(movie, index) in movieList"
         :key="index"
         :movieInfo="movie"
+        :isFavoritesView="false"
+        @addToFavorites="addToFavorites"
       ></list-item>
     </section>
     <section v-show="isLoading">
@@ -29,6 +31,7 @@ import SearchFilter from "../components/SearchFilter";
 import ListItem from "../components/ListItem";
 import Loader from "../components/Loader";
 import MovieService from "../api/movieService";
+// import { EventBus } from "../global-events/event-bus";
 
 export default {
   components: {
@@ -43,6 +46,7 @@ export default {
       isLoading: false,
       searchQuery: {},
       page: 1,
+      favorites: [],
     };
   },
 
@@ -72,6 +76,11 @@ export default {
         this.isLoading = false;
       });
     },
+
+    addToFavorites(val) {
+      this.favorites.push(val);
+      this.$emit("getFavorites", this.favorites);
+    },
   },
 
   computed: {
@@ -85,10 +94,6 @@ export default {
       this.page = val;
       this.getMovieList();
     },
-  },
-
-  mounted() {
-    this.getLoadingStatus();
   },
 };
 </script>

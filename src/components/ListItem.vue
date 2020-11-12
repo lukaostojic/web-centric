@@ -3,48 +3,47 @@
     <div class="list-item__heading display-flex--column align-center">
       <div class="display-flex--row justify-between full-width">
         <h4 class="list-item__heading-header">
-          {{ movieInfo.Title }}
+          {{ movieInfo.Title || movieDetails.Title }}
         </h4>
         <i
           @click="addToFavorites"
           class="list-item__heading-favorite fa fa-star"
           aria-hidden="true"
           :class="{ added: isFavorite }"
+          v-if="!isFavoritesView"
         ></i>
       </div>
       <div
         class="list-item__heading-info display-flex--row justify-between align-center full-width"
       >
         <div class="display-flex--column full-width">
-          <span>{{ movieInfo.Year }}</span>
-          <span>{{ movieInfo.Type }}</span>
+          <span>{{ movieInfo.Year || movieDetails.Year }}</span>
+          <span>{{ movieInfo.Type || movieDetails.Type }}</span>
         </div>
         <i @click="getDetails" class="fa fa-info-circle" aria-hidden="true"></i>
       </div>
-
-      <!-- <img class="list-item__heading-image" :src="movieInfo.Poster" alt="" /> -->
     </div>
     <div v-if="isLoading && !showDetails">
       <loader></loader>
     </div>
-    <!-- <div v-if="showDetails"> -->
     <div v-if="!isLoading && showDetails" class="list-item__details">
       <p>{{ movieDetails.Plot }}</p>
+      <img class="" :src="movieInfo.Poster" alt="" />
     </div>
-    <!-- </div> -->
   </div>
 </template>
 
 <script>
 import MovieService from "../api/movieService";
 import Loader from "../components/Loader";
+// import { EventBus } from "../global-events/event-bus";
 
 export default {
   components: {
     Loader,
   },
 
-  props: ["movieInfo"],
+  props: ["movieInfo", "isFavoritesView"],
 
   data() {
     return {
@@ -68,9 +67,7 @@ export default {
 
     addToFavorites() {
       this.isFavorite = !this.isFavorite;
-      if (this.isFavorite) {
-        this.$emit("addToFavorites", this.movieInfo.imdbID);
-      }
+      this.$emit("addToFavorites", this.movieInfo.imdbID);
     },
   },
 };

@@ -8,6 +8,7 @@ const MovieService = {
     type: null,
     year: "",
     page: "1",
+    isFavorite: false,
   },
   movieId: null,
 
