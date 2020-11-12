@@ -1,40 +1,33 @@
 <template>
   <div>
     <form @submit.prevent class="search-form">
-      <div>
-        <section class="search-form__section">
-          <span>Search for </span>
-          <label for="movie">Movie</label>
-          <input type="radio" name="type" value="movie" v-model="search.type" />
-          <label for="series">Series</label>
+      <section class="search-form__section">
+        <span>Search for </span>
+        <label for="movie">Movie</label>
+        <input type="radio" name="type" value="movie" v-model="search.type" />
+        <label for="series">Series</label>
+        <input type="radio" name="type" value="series" v-model="search.type" />
+      </section>
+      <section class="search-form__section">
+        <span>Released</span>
+        <select name="year" v-model="search.year">
+          <option value="null">Any</option>
+          <option v-for="(year, index) in years" :key="index">{{
+            year
+          }}</option>
+        </select>
+      </section>
+      <section class="search-form__section display-flex--row full-width">
+        <div class="full-width search-input-wrapper">
           <input
-            type="radio"
-            name="type"
-            value="series"
-            v-model="search.type"
+            v-model="search.name"
+            type="text"
+            class="full-width"
+            placeholder="Search..."
           />
-        </section>
-        <section class="search-form__section">
-          <span>Released</span>
-          <select name="year" v-model="search.year">
-            <option value="null">Any</option>
-            <option v-for="(year, index) in years" :key="index">{{
-              year
-            }}</option>
-          </select>
-        </section>
-        <section class="search-form__section display-flex--row full-width">
-          <div class="full-width">
-            <input
-              v-model="search.name"
-              type="text"
-              class="full-width"
-              placeholder="Search..."
-            />
-          </div>
-          <button @click="getData()">Search</button>
-        </section>
-      </div>
+        </div>
+        <button @click="getData()">Search</button>
+      </section>
     </form>
   </div>
 </template>

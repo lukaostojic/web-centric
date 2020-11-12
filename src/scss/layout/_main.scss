@@ -3,6 +3,11 @@
   padding: $gap_sm;
   background: $color_bg-cyan;
 
+  @media only screen and (min-width: 992px) {
+    position: relative;
+    top: 0;
+  }
+
   &__pagination {
     padding: $gap_xs $gap_md;
     margin: $gap_sm;
@@ -15,4 +20,19 @@
 .movie-list {
   height: calc(100vh - 250px);
   overflow-y: scroll;
+
+  @media only screen and (min-width: 768px) {
+    height: calc(100vh - 180px);
+  }
+
+  @media only screen and (min-width: 992px) {
+    width: 740px;
+    height: auto;
+    margin: 0 auto;
+    overflow-y: hidden;
+  }
+
+  @media only screen and (min-width: 1200px) {
+    width: 100%;
+  }
 }

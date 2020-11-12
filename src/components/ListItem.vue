@@ -38,18 +38,26 @@
       </div>
 
       <p>{{ movieDetails.Plot }}</p>
-      <img class="" :src="movieInfo.Poster" alt="" />
-      <p>
-        <strong> Director:</strong> &nbsp;<span>{{
-          movieDetails.Director
-        }}</span>
-      </p>
-      <p>
-        <strong> Actors:</strong> &nbsp;<span>{{ movieDetails.Actors }}</span>
-      </p>
-      <p>
-        <strong> Runtime:</strong> &nbsp;<span>{{ movieDetails.Runtime }}</span>
-      </p>
+      <div class="list-item__details-info display-flex--column">
+        <img class="" :src="movieInfo.Poster" alt="" />
+        <div class="position-relative">
+          <p>
+            <strong> Director:</strong> &nbsp;<span>{{
+              movieDetails.Director
+            }}</span>
+          </p>
+          <p>
+            <strong> Actors:</strong> &nbsp;<span>{{
+              movieDetails.Actors
+            }}</span>
+          </p>
+          <p>
+            <strong> Runtime:</strong> &nbsp;<span>{{
+              movieDetails.Runtime
+            }}</span>
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -89,6 +97,10 @@ export default {
     addToFavorites() {
       this.isFavorite = !this.isFavorite;
       this.$emit("addToFavorites", this.movieInfo.imdbID);
+    },
+
+    mounted() {
+      this.showDetails = false;
     },
   },
 };

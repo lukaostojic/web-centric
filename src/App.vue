@@ -17,7 +17,8 @@ export default {
   },
 };
 
-// bug - favorites stay marked
-// responsiveness
+// @TODO
+// bug - favorites don't stay marked
+// bug - show details stays open
 // refactoring
 </script>

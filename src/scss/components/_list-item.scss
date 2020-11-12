@@ -41,5 +41,36 @@
       width: 100%;
       margin: $gap_md auto;
     }
+
+    @media only screen and (min-width: 768px) {
+      &-info {
+        flex-direction: row;
+
+        & > div {
+          top: 10px;
+          left: $gap_md;
+        }
+      }
+    }
+  }
+
+  @media only screen and (min-width: 1200px) {
+    display: flex;
+    position: static;
+    box-shadow: none;
+
+    &__heading {
+      width: 450px;
+      border-bottom: 1px solid #ecefef;
+    }
+
+    &__details {
+      position: fixed;
+      position: absolute;
+      top: 135px;
+      left: 500px;
+      margin-right: $gap_xl;
+      background: #fff;
+    }
   }
 }
