@@ -11,7 +11,3 @@
     <img src="../assets/logo.png" class="main-navigation__logo" alt="Logo" />
   </nav>
 </template>
-
-<script>
-export default {};
-</script>

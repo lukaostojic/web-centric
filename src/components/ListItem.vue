@@ -1,5 +1,5 @@
 <template>
-  <div class="list-item">
+  <div class="list-item position-relative">
     <div class="list-item__heading display-flex--column align-center">
       <div class="display-flex--row justify-between full-width">
         <h4 class="list-item__heading-header">
@@ -24,7 +24,7 @@
       </div>
     </div>
     <div v-if="isLoading && !showDetails">
-      <loader></loader>
+      <loader :format="loaderFormat"></loader>
     </div>
     <div
       v-if="!isLoading && showDetails"
@@ -32,12 +32,13 @@
     >
       <div class="display-flex--row justify-between align-center">
         <span>{{ movieDetails.Genre }}</span>
-        <span>{{ movieDetails.imdbRating }}</span>
+        <span
+          ><strong>{{ movieDetails.imdbRating }}</strong></span
+        >
       </div>
 
       <p>{{ movieDetails.Plot }}</p>
       <img class="" :src="movieInfo.Poster" alt="" />
-      <!-- <div class="display-flex--column"> -->
       <p>
         <strong> Director:</strong> &nbsp;<span>{{
           movieDetails.Director
@@ -49,7 +50,6 @@
       <p>
         <strong> Runtime:</strong> &nbsp;<span>{{ movieDetails.Runtime }}</span>
       </p>
-      <!-- </div> -->
     </div>
   </div>
 </template>
@@ -57,7 +57,6 @@
 <script>
 import MovieService from "../api/movieService";
 import Loader from "../components/Loader";
-// import { EventBus } from "../global-events/event-bus";
 
 export default {
   components: {
@@ -71,6 +70,7 @@ export default {
       movieDetails: {},
       showDetails: false,
       isLoading: false,
+      loaderFormat: "small",
       isFavorite: false,
     };
   },
@@ -83,7 +83,6 @@ export default {
         this.showDetails = !this.showDetails;
         this.movieDetails = resp;
         this.isLoading = false;
-        console.log(resp);
       });
     },
 

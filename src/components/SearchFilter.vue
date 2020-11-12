@@ -41,6 +41,7 @@
 
 <script>
 import MovieService from "../api/movieService";
+import { EventBus } from "../global-events/event-bus";
 
 export default {
   data() {
@@ -72,8 +73,13 @@ export default {
         page: undefined,
       };
       MovieService.getMovieList().then((resp) => {
-        this.$emit("listFetched", resp);
-        this.$emit("isLoading", false);
+        if (resp.Response == "False") {
+          EventBus.$emit("ERROR_MESSAGE", resp.Error);
+        } else {
+          this.$emit("listFetched", resp);
+          this.$emit("isLoading", false);
+          EventBus.$emit("ERROR_MESSAGE", "");
+        }
       });
     },
   },

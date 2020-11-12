@@ -1,8 +1,24 @@
 .loader {
   top: 60px;
+  pointer-events: none;
 
-  img {
-    width: 50%;
-    height: auto;
+  &--big {
+    top: 60px;
+
+    img {
+      width: 50%;
+      height: auto;
+    }
+  }
+
+  &--small {
+    position: absolute;
+    transform: translateY(-70px);
+
+    img {
+      width: auto;
+      height: 75%;
+      max-height: 70px;
+    }
   }
 }

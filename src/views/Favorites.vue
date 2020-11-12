@@ -2,8 +2,8 @@
   <div>
     <div v-show="!isLoading">
       <list-item
-        v-for="(movie, index) in favoritesList"
-        :key="index"
+        v-for="movie in favoritesList"
+        :key="movie.imdbID"
         :movieInfo="movie"
         :isFavoritesView="true"
       ></list-item>
@@ -11,6 +11,9 @@
     <div v-show="isLoading">
       <loader></loader>
     </div>
+    <p class="text-center" v-show="isEmpty && !isLoading">
+      Your list is empty.
+    </p>
   </div>
 </template>
 
@@ -32,13 +35,18 @@ export default {
       movieId: "",
       favoritesList: [],
       isLoading: false,
+      isEmpty: true,
     };
   },
 
   methods: {
     async getMovies() {
       this.isLoading = true;
+      this.isEmpty = true;
       let iterations = this.favorites.length;
+      if (this.favorites.length == 0) {
+        this.isLoading = false;
+      }
       for await (let item of this.favorites) {
         MovieService.movieId = item;
         MovieService.getMovieDetails().then((resp) => {
@@ -46,6 +54,7 @@ export default {
           iterations--;
           if (iterations == 0) {
             this.isLoading = false;
+            this.isEmpty = false;
           }
         });
       }
