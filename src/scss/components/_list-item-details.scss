@@ -1,0 +1,30 @@
+.list-item {
+  &__details {
+    padding: $gap_md;
+    border-top: 1px solid $color_bg-grey;
+    font-size: 14px;
+
+    span,
+    p {
+      margin-bottom: $gap_sm;
+    }
+
+    img {
+      max-width: 350px;
+      width: 100%;
+      margin: $gap_md auto;
+    }
+
+    @media only screen and (min-width: 768px) {
+      &-info {
+        flex-direction: row;
+        max-width: 600px;
+
+        & > div {
+          top: 10px;
+          left: $gap_md;
+        }
+      }
+    }
+  }
+}

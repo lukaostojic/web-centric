@@ -30,34 +30,7 @@
       v-if="!isLoading && showDetails"
       class="list-item__details display-flex--column"
     >
-      <div class="display-flex--row justify-between align-center">
-        <span>{{ movieDetails.Genre }}</span>
-        <span
-          ><strong>{{ movieDetails.imdbRating }}</strong></span
-        >
-      </div>
-
-      <p>{{ movieDetails.Plot }}</p>
-      <div class="list-item__details-info display-flex--column">
-        <img class="" :src="movieInfo.Poster" alt="" />
-        <div class="position-relative">
-          <p>
-            <strong> Director:</strong> &nbsp;<span>{{
-              movieDetails.Director
-            }}</span>
-          </p>
-          <p>
-            <strong> Actors:</strong> &nbsp;<span>{{
-              movieDetails.Actors
-            }}</span>
-          </p>
-          <p>
-            <strong> Runtime:</strong> &nbsp;<span>{{
-              movieDetails.Runtime
-            }}</span>
-          </p>
-        </div>
-      </div>
+      <list-item-details :movieDetails="movieDetails"></list-item-details>
     </div>
   </div>
 </template>
@@ -65,10 +38,12 @@
 <script>
 import MovieService from "../api/movieService";
 import Loader from "../components/Loader";
+import ListItemDetails from "../components/ListItemDetails";
 
 export default {
   components: {
     Loader,
+    ListItemDetails,
   },
 
   props: ["movieInfo", "isFavoritesView"],
@@ -97,10 +72,6 @@ export default {
     addToFavorites() {
       this.isFavorite = !this.isFavorite;
       this.$emit("addToFavorites", this.movieInfo.imdbID);
-    },
-
-    mounted() {
-      this.showDetails = false;
     },
   },
 };

@@ -1,8 +1,7 @@
 @import "helpers/variables";
-@import "helpers/mixins";
 @import "helpers/extends";
 
-@import "reusable/box-model.scss";
+@import "reusable/box-model";
 
 @import "layout/init";
 @import "layout/main";
@@ -12,3 +11,4 @@
 @import "components/loader";
 @import "components/navigation";
 @import "components/error-message";
+@import "components/list-item-details";

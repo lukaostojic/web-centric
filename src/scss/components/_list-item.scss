@@ -5,6 +5,10 @@
   &__heading {
     padding: $gap_md;
 
+    &-header {
+      padding-right: $gap_sm;
+    }
+
     &-favorite {
       color: $color_text-dark;
 
@@ -23,54 +27,6 @@
           text-transform: capitalize;
         }
       }
-    }
-  }
-
-  &__details {
-    padding: $gap_md;
-    border-top: 1px solid $color_bg-grey;
-    font-size: 14px;
-
-    span,
-    p {
-      margin-bottom: $gap_sm;
-    }
-
-    img {
-      max-width: 350px;
-      width: 100%;
-      margin: $gap_md auto;
-    }
-
-    @media only screen and (min-width: 768px) {
-      &-info {
-        flex-direction: row;
-
-        & > div {
-          top: 10px;
-          left: $gap_md;
-        }
-      }
-    }
-  }
-
-  @media only screen and (min-width: 1200px) {
-    display: flex;
-    position: static;
-    box-shadow: none;
-
-    &__heading {
-      width: 450px;
-      border-bottom: 1px solid #ecefef;
-    }
-
-    &__details {
-      position: fixed;
-      position: absolute;
-      top: 135px;
-      left: 500px;
-      margin-right: $gap_xl;
-      background: #fff;
     }
   }
 }

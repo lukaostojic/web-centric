@@ -8,6 +8,7 @@
     </main>
   </div>
 </template>
+
 <script>
 import Navigation from "./components/Navigation";
 
@@ -18,7 +19,9 @@ export default {
 };
 
 // @TODO
-// bug - favorites don't stay marked
-// bug - show details stays open
+// bug - favorites don't remain marked (home page) after an API call
+
+// add transitions / animations
+// use local storage to store data permanently
 // refactoring
 </script>

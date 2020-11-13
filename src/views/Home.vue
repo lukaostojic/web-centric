@@ -13,11 +13,16 @@
         :isFavoritesView="false"
         @addToFavorites="addToFavorites"
       ></list-item>
+      <!-- Don't ask -->
+      <br />
+      <br />
+      <br />
     </section>
     <section v-show="isLoading">
       <loader :format="loaderFormat"></loader>
     </section>
     <footer
+      v-show="!isLoading && showFooter"
       class="home-footer display-flex--row justify-center align-center position-fixed full-width"
     >
       <div class="">
@@ -65,15 +70,15 @@ export default {
       searchQuery: {},
       page: 1,
       favorites: [],
-      componentKey: 0,
-      errorMessage: "",
       favoritesList: [],
+      showFooter: false,
     };
   },
 
   methods: {
     renderMovieList(val) {
       this.movieList = val.Search;
+      this.showFooter = this.movieList.length > 9;
     },
 
     getDataFromFilter(val) {
@@ -100,10 +105,10 @@ export default {
 
     addToFavorites(val) {
       this.favorites.push(val);
-      this.sendDataToFavorites();
+      this.sortFavoritesArray();
     },
 
-    sendDataToFavorites() {
+    sortFavoritesArray() {
       this.favoritesList = this.favorites.sort().filter((key, idx) => {
         return (
           this.favorites.indexOf(key) == idx &&
